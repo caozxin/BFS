@@ -23,11 +23,13 @@ class Solution:
     """
     def level_order(self, root: TreeNode) -> List[List[int]]:
         # write your code here
+        if root is None:  # always check if root == None
+            return []
         queue = deque([root])
         result_list = []
         
         # while queue:
-        while len(queue) > 0 :
+        while len(queue) > 0 :  # do not hardcode the size here, since the size is changing when we popleft
             level = []
             for _ in range(len(queue)):
                 node = queue.popleft()
