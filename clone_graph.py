@@ -26,49 +26,31 @@ class Solution:
         if not node:
             return None
             
-         #1) find all the nodes by BFS
+         #1) find and copy all the nodes by BFS
         input_node = node
-        result = [] # Keep track of visited nodes
         queue = deque([node])
-        visited = {}
+        visited = {} # Keep track of visited nodes
         while queue:
-
             node = queue.popleft()
             # print(node.label)
             if node in visited:
-                continue
+                pass
 
             visited[node] = UndirectedGraphNode(node.label)
-            result.append(visited[node])
 
             if node.neighbors:
-                visited[node].neighbors = node.neighbors
+                # visited[node].neighbors = node.neighbors
                 for each_neighbor in node.neighbors:# please note this is while loop base case
-                    if each_neighbor in result: 
-                        continue
-                    queue.append(each_neighbor)
+                    if each_neighbor not in visited: 
+                        queue.append(each_neighbor)
 
-        # print(result, len(result))
-        # print(neighbors_dict, len(neighbors_dict))
+        # 2) Copy all the edges (neighbors)
+        for each_node in visited:
+            new_node = visited[each_node]
+            for neighbor in each_node.neighbors:
+                new_node.neighbors.append(visited[neighbor]) # because visited is a dict(), it could be called independently. 
 
-        for each in neighbors_dict:
-            print(each.label, each.neighbors)
-
-        #2) copy all the nodes
-        new_nodes_list = {} # this is a dictionary
-
-        for each_node in result:
-            # print("each_node", each_node.label)
-            new_nodes_list[each_node] = UndirectedGraphNode(each_node.label)
-        # print(len(new_nodes_list))
-
-        # 3) copy all the edges = neighbors
-        for each_new_node in new_nodes_list:
-            print(each_new_node.label)
-            each_new_node.neighbors = neighbors_dict[each_new_node]
-
-        return new_nodes_list[input_node] #return the same node as input node but in new graph
-        # return new_nodes_list
+        return visited[input_node]
 
     def clone_graph_default(self, node: UndirectedGraphNode) -> UndirectedGraphNode:
 
