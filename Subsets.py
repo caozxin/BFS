@@ -1,19 +1,20 @@
 from typing import (
     List,
 )
-
+from collections import deque
 class Solution:
     """
     @param nums: A set of numbers
     @return: A list of lists
              we will sort your return value in output
     """
-    def subsets(self, nums: List[int]) -> List[List[int]]:
+    """
+    def subsets_dfs(self, nums: List[int]) -> List[List[int]]:
         n = len(nums)
 
         res = []
         def dfs(i, cur):
-            if i == n: # when all index went over, we return 
+            if i == n: # when all index went over, we return --> base case
                 cur.sort()
                 res.append(cur)
                 return
@@ -24,3 +25,20 @@ class Solution:
         dfs(0, [])
 
         return res
+    """
+    def subsets(self, nums: List[int]) -> List[List[int]]:
+        if not nums:
+            return [[]]
+
+        queue = [[]]
+        index = 0
+
+        while index < len(queue):
+            subset = queue[index]
+            index += 1
+            for num in nums:
+                if subset and subset[-1] >= num:
+                    continue
+                queue.append(subset + [num])
+
+        return queue
