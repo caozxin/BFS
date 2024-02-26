@@ -1,38 +1,39 @@
-# Definition for a binary tree node.
-# class TreeNode:
-#     def __init__(self, val=0, left=None, right=None):
-#         self.val = val
-#         self.left = left
-#         self.right = right
-from collections import deque
+from lintcode import (
+    TreeNode,
+)
+
+"""
+Definition of TreeNode:
+class TreeNode:
+    def __init__(self, val):
+        self.val = val
+        self.left, self.right = None, None
+"""
+
 class Solution:
-    def isSameTree(self, p: Optional[TreeNode], q: Optional[TreeNode]) -> bool:
-        if not p or not q:
-            return False
-        result_list_p = []
-        result_list_q = []
+    """
+    @param a: the root of binary tree a.
+    @param b: the root of binary tree b.
+    @return: true if they are identical, or false.
 
-        def treeTraversal(root: Optional[TreeNode]) -> List:
-            queue = deque([root])
-            result_list = []
-
-            while len(queue) > 0:
-                node = queue.popleft()
-                val = node.val
-                print(val)
-                result_list.append(val)
-                if node.left:
-                    queue.append(node.left)
-                if node.right:
-                    queue.append(node.right)
-            return result_list
-
-        result_list_p = treeTraversal(p)
-        result_list_q = treeTraversal(q)
-        print(result_list_p, result_list_q)
-
-        if result_list_p == result_list_q:
+    note: this should be in place
+    """
+    def is_identical(self, a: TreeNode, b: TreeNode) -> bool:
+        # write your code here
+        #1) None Handling:
+        if not a and not b:
             return True
-        else:
+        elif not a or not b:
             return False
-        # return True
+        print(a.val, b.val)
+        #2) main loop:
+        if a.val == b.val:
+            left = self.is_identical(a.left, b.left)
+            right = self.is_identical(a.right, b.right)
+        
+            if not left or not right:
+                return False
+        if a.val != b.val:
+            return False
+        
+        return True
