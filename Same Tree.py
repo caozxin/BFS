@@ -18,7 +18,7 @@ class Solution:
 
     note: this should be in place
     """
-    def is_identical(self, a: TreeNode, b: TreeNode) -> bool:
+    def is_identical_01(self, a: TreeNode, b: TreeNode) -> bool:
         # write your code here
         #1) None Handling:
         if not a and not b:
@@ -37,3 +37,20 @@ class Solution:
             return False
         
         return True
+
+    def is_identical(self, a: TreeNode, b: TreeNode) -> bool:
+
+        if not a and not b: # if we finish both trees traversal and no False found yet!
+            return True
+        if not a or not b: # if only one tree got finished travelling or another one does not, it means, they are not identical
+            return False
+        if a.val != b.val:
+            return False
+        
+        print(a.val, b.val)
+
+        return self.is_identical(a.left, b.left) and self.is_identical(a.right, b.right)
+
+
+
+
