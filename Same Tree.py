@@ -50,6 +50,7 @@ class Solution:
         print(a.val, b.val)
 
         return self.is_identical(a.left, b.left) and self.is_identical(a.right, b.right)
+        #We recursively check left and right subtrees, ensuring that for the trees to be identical, both left and right subtrees must also be identical. Hence, we use and instead of or
 
 
 
