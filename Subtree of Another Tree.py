@@ -18,9 +18,27 @@ class Solution:
     @param t: the t' root
     @return: whether tree t has exactly the same structure and node values with a subtree of s
     """
-    
 
     def is_subtree(self, s: TreeNode, t: TreeNode) -> bool:
+        if not s:
+            return False
+        if self.is_same_tree(s, t):
+            return True
+        return self.is_subtree(s.left, t) or self.is_subtree(s.right, t)
+
+    def is_same_tree(self, s: TreeNode, t: TreeNode) -> bool:
+        if not s and not t: 
+            return True
+        if not s or not t:
+            return False
+        if s.val != t.val:
+            return False
+
+        return self.is_same_tree(s.left, t.left) and self.is_same_tree(s.right, t.right)
+        
+    
+
+    def is_subtree_testing(self, s: TreeNode, t: TreeNode) -> bool:
         # Write your code here
         
         if not s or not t:
