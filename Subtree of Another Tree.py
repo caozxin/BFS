@@ -1,5 +1,3 @@
-# Given two non-empty binary trees s and t, check whether tree t has exactly the same structure and node values with a subtree of s. A subtree of s is a tree consists of a node in s and all of this node's descendants. The tree s could also be considered as a subtree of itself.
-
 from lintcode import (
     TreeNode,
 )
@@ -13,72 +11,29 @@ class TreeNode:
 """
 
 class Solution:
-    """
-    @param s: the s' root
-    @param t: the t' root
-    @return: whether tree t has exactly the same structure and node values with a subtree of s
-    """
-
     def is_subtree(self, s: TreeNode, t: TreeNode) -> bool:
-        if not s:
+        if not s: #We first handle the base cases. If s is None, it means we have traversed the entire s tree, and t wasn't found as a subtree.
             return False
+
         if self.is_same_tree(s, t):
             return True
+
+        print(s.val)
+        #travel on parent tree s:
+
         return self.is_subtree(s.left, t) or self.is_subtree(s.right, t)
+        #we first go through left_s_subtree if it is true, then we go through right_s_subtree
 
-    def is_same_tree(self, s: TreeNode, t: TreeNode) -> bool:
-        if not s and not t: 
+    def is_same_tree(self, s_subtree: TreeNode, t: TreeNode) -> bool:
+        if not s_subtree and not t:  #if finish traveling both trees
             return True
-        if not s or not t:
+        if not s_subtree or not t: #if only finish traveling one tree
             return False
-        if s.val != t.val:
+        if s_subtree.val != t.val: # if any of node.val in s_subtree != t_node.val
             return False
 
-        return self.is_same_tree(s.left, t.left) and self.is_same_tree(s.right, t.right)
-        
-    
+        return self.is_same_tree(s_subtree.left, t.left) and self.is_same_tree(s_subtree.right, t.right)
+        #to check if two trees are the same, we need to go through both left and right subtree
 
-    def is_subtree_testing(self, s: TreeNode, t: TreeNode) -> bool:
-        # Write your code here
-        
-        if not s or not t:
-            return
 
-        input_tree_one = s
-        input_tree_two = t
-        tree_one_root = s.val
-        tree_two_root = t.val
-        result = None
-
-        # implement tree traversal:
-        def dfs(input_tree_one: TreeNode, input_tree_two: TreeNode, tree_one_root, tree_two_root):
-            if not input_tree_one or not input_tree_two: # this is the exist strategy
-                return 
-            print("before:")
-            print(input_tree_one.val, input_tree_two.val)
-            if input_tree_one.val == input_tree_two.val:
-                #structure search starts:
-                print(" the search starts")
-                left = dfs(input_tree_one.left, input_tree_two.left, tree_one_root, tree_two_root)
-                right = dfs(input_tree_one.right, input_tree_two.right, tree_one_root, tree_two_root)
-                print(" during the search: ", input_tree_one.val, input_tree_two.val)
-                if input_tree_one.val == tree_one_root or input_tree_two.val == tree_two_root:
-                    print(" search ends!!!")
-                    return True
-
-            else:
-                left = dfs(input_tree_one.left, input_tree_two,  tree_one_root, tree_two_root)
-                right = dfs(input_tree_one.right, input_tree_two, tree_one_root, tree_two_root)
-            print("after: ")
-            print("     ", input_tree_one.val, input_tree_two.val)
-
-            # return True
-
-            if input_tree_one.val == input_tree_two.val:
-                return True
-            else:
-                return False
-
-        result = dfs(input_tree_one, input_tree_two, tree_one_root, tree_two_root)
-        return result
 
