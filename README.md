@@ -7,7 +7,8 @@ DFS is better at:
 BFS is better for:
       Finding nodes close/closest to the root. 
 
-<img width="682" alt="image" src="https://github.com/user-attachments/assets/5b1c2deb-18ea-47c9-bc2a-ad795ca8225e" />
+<img width="623" alt="image" src="https://github.com/user-attachments/assets/d57f14e5-24ca-4064-8588-75a0cef4d747" />
+
 
 
       from collections import deque
