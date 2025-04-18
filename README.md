@@ -7,7 +7,6 @@ DFS is better at:
 BFS is better for:
       Finding nodes close/closest to the root. 
 
-### Template
 <img width="682" alt="image" src="https://github.com/user-attachments/assets/5b1c2deb-18ea-47c9-bc2a-ad795ca8225e" />
 
 
