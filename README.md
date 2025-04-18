@@ -22,3 +22,27 @@ BFS is better for:
                       return FOUND(child)
                   queue.append(child)
           return NOT_FOUND
+### Updated Template:
+      from collections import deque
+      
+      def levelOrder(self, root: Optional[TreeNode]) -> List[List[int]]:
+        if not root: #None handling.
+            return []
+            
+        queue = deque([root]) # always dequeue([root]) first
+        res = []
+        
+        while len(queue) > 0:
+            level = []
+            for _ in range(len(queue)): # "_" is just a placeholder to loop through the len of queue. 
+                node = queue.popleft() # only queue could popleft()
+                val = node.val
+                level.append(val)
+      
+                if node.left:
+                    queue.append(node.left)
+                if node.right:
+                    queue.append(node.right)
+            res.append(level) # update the result list once you finish looping the same level. 
+      
+        return res
