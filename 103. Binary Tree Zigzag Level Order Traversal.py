@@ -34,7 +34,7 @@ class Solution:
 
             print("level_idx", level_idx, level_zipzag, res)
             if level_idx % 2 == 0 :
-                print("even", level_zipzag[::-1])
+                print("even", level_zipzag[::-1]) # use list[::-1] to get the reversed list!
                 res.append(level_zipzag[::-1])
             else:
                 res.append(level_zipzag)
