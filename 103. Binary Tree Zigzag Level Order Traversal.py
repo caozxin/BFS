@@ -22,7 +22,7 @@ class Solution:
                 node = queue.popleft() # FIFO
                 # idx += 1
                 val = node.val
-                print(val, level_idx)
+                # print(val, level_idx)
                 level_zipzag.append(val)
                 # if level_idx % 2 == 0 :
                 #     print("odd")
@@ -32,8 +32,12 @@ class Solution:
                 if node.right: # even num
                     queue.append(node.right)
 
-
-
-            res.append(level_zipzag)
+            print("level_idx", level_idx, level_zipzag, res)
+            if level_idx % 2 == 0 :
+                print("even", level_zipzag[::-1])
+                res.append(level_zipzag[::-1])
+            else:
+                res.append(level_zipzag)
 
         print(res)
+        return res
