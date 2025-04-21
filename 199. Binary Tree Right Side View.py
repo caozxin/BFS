@@ -21,16 +21,16 @@ class Solution:
             for _ in range(len(queue)): # this is the main loop.
                 node = queue.popleft()
                 val = node.val
-                print("val", val)
+                # print("val", val)
                 level.append(val)
                 if node.left:
                     queue.append(node.left)
 
                 if node.right:
                     queue.append(node.right)
-            print(" level", level)
-            right_most = level.pop()
-            print(" right_most", right_most)
+            # print(" level", level)
+            right_most = level[-1] # as long as list != null, list[-1] is better than list.pop()
+            # print(" right_most", right_most)
             res.append(right_most)
-        print(res)
+        # print(res)
         return res
