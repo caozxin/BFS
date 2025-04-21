@@ -13,7 +13,7 @@ class Solution:
             return 0 # this needs to be matching expected return format.
 
         queue = deque([root])
-        res = []
+        # res = []
         level_idx = 0
 
         while len(queue) > 0: # this is true as long as we have root.
@@ -24,7 +24,7 @@ class Solution:
                 node = queue.popleft()
                 val = node.val
                 # level.append(val)
-                print(val, level_idx)
+                # print(val, level_idx)
                 # level_idx += 1
                 if node.left:
                     queue.append(node.left)
@@ -32,4 +32,3 @@ class Solution:
                     queue.append(node.right)
                 if not node.left and not node.right:
                     return level_idx
-
