@@ -32,3 +32,23 @@ class Solution:
                     queue.append(node.right)
                 if not node.left and not node.right:
                     return level_idx
+
+
+### best run time version but w/o BFS template:
+from collections import deque
+
+class Solution:
+    def minDepth(self, root: Optional[TreeNode]) -> int:
+        if not root:
+            return 0
+
+        queue = deque([(root, 1)])  # store node along with current depth
+
+        while queue:
+            node, depth = queue.popleft()
+            if not node.left and not node.right:
+                return depth
+            if node.left:
+                queue.append((node.left, depth + 1))
+            if node.right:
+                queue.append((node.right, depth + 1))
