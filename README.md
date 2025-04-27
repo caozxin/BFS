@@ -46,3 +46,6 @@ BFS is better for:
             res.append(level) # update the result list once you finish looping the same level. 
       
         return res
+
+### A Better Version of BFS:
+<img width="688" alt="image" src="https://github.com/user-attachments/assets/52a28c2c-77ed-435a-a7e9-488e4928d014" />
