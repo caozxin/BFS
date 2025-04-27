@@ -47,5 +47,5 @@ BFS is better for:
       
         return res
 
-### A Better Version of BFS:
+### A Better Version of BFS: --> Bidirectional BFS!
 <img width="688" alt="image" src="https://github.com/user-attachments/assets/52a28c2c-77ed-435a-a7e9-488e4928d014" />
